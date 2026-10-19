@@ -1,0 +1,28 @@
+seed: 42
+device: auto # auto 自动选择 CUDA 或 CPU，也可以填写 cuda 或 cpu
+
+dataset:
+  root: ./data # 此目录下应包含 VOCdevkit/VOC2012
+  year: "2012"
+  download: true # 已有数据集时可以改为 false
+  num_classes: 21 # 0 为背景，1~20 为前景类别
+  ignore_index: 255
+  crop_size: [384, 384] # [高度, 宽度]，用于训练裁剪
+  scale_range: [0.5, 2.0] # 相对于原图的等比例随机缩放范围
+  hflip_prob: 0.5
+  pad_divisor: 32 # 验证图像只补齐到 32 的倍数
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+model:
+  name: unet
+  encoder_name: resnet18
+  encoder_weights: imagenet # null 表示不加载预训练权重
+
+train:
+  epochs: 30
+  batch_size: 4
+  num_workers: 0
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  output_dir: ./runs/voc_unet_resnet18 # 每次运行自动创建时间戳子目录
