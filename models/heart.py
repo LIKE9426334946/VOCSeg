@@ -93,6 +93,7 @@ class HeartNetwork(nn.Module):
         self.right = nn.Conv2d(3, 64, 7, padding=3, stride=2)
 
         self.bn1 = nn.BatchNorm2d(64)
+        self.bn2 = nn.BatchNorm2d(64)
 
         # 第一阶段
         self.left_branch_1 = LateralBranch(64, 64)
@@ -133,7 +134,7 @@ class HeartNetwork(nn.Module):
 
     def forward(self, x):
         left_1 = F.relu(self.bn1(self.left(x)))
-        right_1 = F.relu(self.bn1(self.right(x)))
+        right_1 = F.relu(self.bn2(self.right(x)))
 
         # ----------------
         center_1 = torch.cat([left_1, right_1], dim=1)
