@@ -200,3 +200,10 @@ class HeartNetwork(nn.Module):
 
         out = self.head(up_44)
         return out
+
+
+if __name__ == "__main__":
+    model = HeartNetwork()
+    x = torch.randn(3, 3, 256, 256)
+    out = model(x)
+    print(out.shape)

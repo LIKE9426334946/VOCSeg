@@ -80,7 +80,7 @@ def main(config_path):
 
     train_loader, val_loader = build_loaders(config, device)
     # model = build_model(config["model"], data_cfg["num_classes"]).to(device)
-    model = HeartNetwork()
+    model = HeartNetwork().to(device)
     criterion = nn.CrossEntropyLoss(
         ignore_index=data_cfg["ignore_index"], reduction="sum"
     )
