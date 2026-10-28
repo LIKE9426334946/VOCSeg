@@ -12,6 +12,7 @@ from tqdm import tqdm
 from models import build_model
 from utils.dataset import build_loaders
 from utils.metrics import SegmentationMetrics
+from models.heart import HeartNetwork
 
 
 def run_epoch(
@@ -78,7 +79,8 @@ def main(config_path):
     device = torch.device(device_name)
 
     train_loader, val_loader = build_loaders(config, device)
-    model = build_model(config["model"], data_cfg["num_classes"]).to(device)
+    # model = build_model(config["model"], data_cfg["num_classes"]).to(device)
+    model = HeartNetwork()
     criterion = nn.CrossEntropyLoss(
         ignore_index=data_cfg["ignore_index"], reduction="sum"
     )
