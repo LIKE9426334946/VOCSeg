@@ -7,7 +7,7 @@ dataset:
   download: true # 已有数据集时可以改为 false
   num_classes: 21 # 0 为背景，1~20 为前景类别
   ignore_index: 255
-  crop_size: [384, 384] # [高度, 宽度]，用于训练裁剪
+  crop_size: [256, 256] # [高度, 宽度]，用于训练裁剪
   scale_range: [0.5, 2.0] # 相对于原图的等比例随机缩放范围
   hflip_prob: 0.5
   pad_divisor: 32 # 验证图像只补齐到 32 的倍数
